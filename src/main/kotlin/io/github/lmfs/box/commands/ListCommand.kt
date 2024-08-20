@@ -63,7 +63,10 @@ object ListCommand: CliktCommand(name = "list") {
             if (isSymbolicLink) {
                 val target = Files.readSymbolicLink(file.toPath())
                 style.fgBrightBlue().a(file.name).reset().a(" -> ").reset()
-                style.a(directory.toPath().relativize(target))
+                val relativize = runCatching {
+                    directory.toPath().relativize(target)
+                }.getOrNull() ?: target
+                style.a(relativize)
             } else style.a(file.name)
             println(style.reset())
         }
