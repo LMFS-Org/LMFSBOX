@@ -1,7 +1,7 @@
 # LMFSBox
-> Better replacement of HOJVBOX
+> A simple toolbox
 
 ### How to build?
 ```bash
-./gradlew shadowJar
+./gradlew build
 ```
